@@ -2,6 +2,8 @@
 
 [pixi](https://pixi.sh/latest/) で cmake を練習する。
 
+- https://prefix-dev.github.io/pixi-build-backends/backends/pixi-build-cmake/#basic-usage
+
 - `windows` `msvc`
 - ros2: Kilted Kaiju (codename ‘kilted’; May, 2025)
 
