@@ -1,10 +1,11 @@
-#include <cstdio>
+#include "rclcpp/rclcpp.hpp"
 
-int main(int argc, char ** argv)
-{
-  (void) argc;
-  (void) argv;
+int main(int argc, char** argv) {
+    rclcpp::init(argc, argv);
 
-  printf("hello world my_cpp_package package\n");
-  return 0;
+    auto node = rclcpp::Node::make_shared("hello");
+    RCLCPP_INFO(node->get_logger(), "Hello, ROS2 world!");
+
+    rclcpp::shutdown();
+    return 0;
 }

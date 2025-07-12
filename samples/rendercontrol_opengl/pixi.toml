@@ -1,0 +1,45 @@
+[workspace]
+authors = ["ousttrue <ousttrue@gmail.com>"]
+channels = ["conda-forge"]
+name = "rendercontrol_opengl"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[target.win-64.activation.env]
+QT_QPA_PLATFORM_PLUGIN_PATH="%cd%\\.pixi\\envs\\default\\Library\\lib\\qt6\\plugins\\platforms"
+
+[tasks.start]
+cmd = ".build/rendercontrol_openglexample"
+depends-on = ["build"]
+
+[dependencies]
+cmake = ">=3.31.6,<4"
+qt6-main = "*"
+
+[feature.build.dependencies]
+cxx-compiler = ">=1.9.0, <2"
+ninja = ">=1.12.1,<2"
+
+# Configures CMake
+[feature.build.tasks.configure]
+cmd = [
+  "cmake",
+  # Use the cross-platform Ninja generator
+  "-GNinja",
+  # The source is in the root directory
+  "-Ssrc",
+  # We wanna build in the .build directory
+  "-B.build",
+]
+inputs = ["src/CMakeLists.txt"]
+outputs = [".build/CMakeFiles/"]
+
+# Build the executable but make sure CMake is configured first.
+[feature.build.tasks.build]
+cmd = ["cmake", "--build", ".build"]
+depends-on = ["configure"]
+inputs = ["src/*"]
+outputs = [".build/bin/rendercontrol_openglexample"]
+
+[environments]
+build = ["build"]

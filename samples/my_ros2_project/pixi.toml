@@ -7,6 +7,7 @@ version = "0.1.0"
 
 [tasks]
 build = {cmd = "colcon build --symlink-install", inputs = ["src"]}
+# pixi run build --cmake-args -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 [activation]
 scripts = ["install/setup.bat"]
